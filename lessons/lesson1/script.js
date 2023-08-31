@@ -32,10 +32,18 @@ const heading2 = document.querySelector("#heading");
 heading2.remove();
 
 const buttonEl = document.querySelector(".btn");
-console.log(buttonEl);
-buttonEl.onclick = function () {
-  buttonEl.textContent = "Товар в корзине";
-};
+const contentEl = document.querySelector(".content");
+const imgEl = document.querySelector(".img");
 
 const textEl = document.createElement("p");
 textEl.textContent = "Тут любой текс и его много";
+
+console.log(buttonEl);
+buttonEl.onclick = function () {
+  buttonEl.textContent = "Товар в корзине";
+  contentEl.appendChild(textEl);
+};
+
+imgEl.onclick = function () {
+  imgEl.src = "newphoto.jpg";
+};
