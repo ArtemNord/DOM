@@ -16,6 +16,21 @@ window.addEventListener("load", console.log("страница загрузила
 // - которому был совершен клик.
 // - Необходимо использовать делегирование.
 
+window.addEventListener("click", clickElement);
+
+function clickElement() {
+  const elements = document.querySelectorAll("");
+
+  elements.forEach((element) => {
+    if (onclick.element) {
+      if (onclick.element === element.setAttribute("class", "super_element")) {
+        console.log('Класс "super_element" присутствует в элементе "div"');
+      }
+      console.log(element);
+    }
+  });
+}
+
 // 4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение: "Вы навели на textarea."
 
 document
@@ -38,12 +53,6 @@ let count = 0;
 
 for (let index = 0; index < liElems.length; index++) {
   if (index % 2 === 1) {
-    liElemsChilds[count] = liElems[index].children;
-    count++;
-    console.log(liElemsChilds);
+    liElems[index].style.backgroundColor = "green";
   }
 }
-
-// liElemsChilds.forEach((element) => {
-//   element.style.backgroundColor = "green";
-// });
