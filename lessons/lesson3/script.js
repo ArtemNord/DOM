@@ -28,8 +28,8 @@ buttonElems.forEach((element) => {
 
 const menuElem = document.querySelector(".menu");
 
-const nameFunction = (e) => {
-  console.log(e.target, e.currentTarget);
+const nameFunction = (event) => {
+  console.log(event.target, event.currentTarget);
 };
 
 menuElem.addEventListener("click", nameFunction);
