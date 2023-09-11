@@ -16,21 +16,6 @@ window.addEventListener("load", console.log("страница загрузила
 // - которому был совершен клик.
 // - Необходимо использовать делегирование.
 
-window.addEventListener("click", clickElement);
-
-function clickElement() {
-  const elements = document.querySelectorAll("");
-
-  elements.forEach((element) => {
-    if (onclick.element) {
-      if (onclick.element === element.setAttribute("class", "super_element")) {
-        console.log('Класс "super_element" присутствует в элементе "div"');
-      }
-      console.log(element);
-    }
-  });
-}
-
 // 4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение: "Вы навели на textarea."
 
 document
@@ -48,11 +33,9 @@ function onmouseoverTextarea() {
 // 7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
 
 const liElems = document.querySelectorAll("li");
-const liElemsChilds = [];
-let count = 0;
 
 for (let index = 0; index < liElems.length; index++) {
   if (index % 2 === 1) {
-    liElems[index].style.backgroundColor = "green";
+    liElems[index].lastElementChild.style.backgroundColor = "green";
   }
 }
