@@ -1,6 +1,6 @@
 // 1. Необходимо вывести сообщение в консоль "все теги прогрузились", когда все теги будут созданы браузером.
 
-window.addEventListener(
+document.addEventListener(
   "DOMContentLoaded",
   console.log("все теги прогрузились")
 );
@@ -16,19 +16,20 @@ window.addEventListener("load", console.log("страница загрузила
 // - которому был совершен клик.
 // - Необходимо использовать делегирование.
 
-window.addEventListener("click", clickElement);
+const bodyElem = document
+  .querySelector("body")
+  .addEventListener("click", showChildrenClass);
 
-function clickElement() {
-  const elements = document.querySelectorAll("");
-
-  elements.forEach((element) => {
-    if (onclick.element) {
-      if (onclick.element === element.setAttribute("class", "super_element")) {
-        console.log('Класс "super_element" присутствует в элементе "div"');
-      }
-      console.log(element);
-    }
-  });
+function showChildrenClass(event) {
+  const eventElem = event.target;
+  const eventElemTag = eventElem.tagName.toLowerCase();
+  if (eventElem.classList.contains("super_element")) {
+    console.log(
+      `Класс 'super_element' присутствует в элементе ${eventElemTag}.`
+    );
+  } else {
+    console.log(`Класс 'super_element' нет в элементе ${eventElemTag}.`);
+  }
 }
 
 // 4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение: "Вы навели на textarea."
@@ -43,16 +44,28 @@ function onmouseoverTextarea() {
 
 // 5. Необходимо повесить событие клика на тег ul. В обработчике события в консоль необходимо выводить текст, который записан внутри элемента кнопки, по которой был произведен клик. Если клик был не по кнопке, то ничего выводить не нужно. Необходимо использовать делегирование.
 
+const ulElem = document
+  .querySelector("ul")
+  .addEventListener("click", showTextButton);
+
+function showTextButton(event) {
+  const eventElem = event.target;
+  if (eventElem.tagName === "BUTTON") {
+    console.log(eventElem.textContent);
+  }
+}
+
 // 6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только потом выводится текст из 3 задания, если мы кликаем по кнопкам в ul? Ответ необходимо написать здесь же, под этим комментарием, своими словами.
+
+// Ответ: При наступлении события обработчики сначала срабатывают на самом вложенном элементе, затем на его родителе, затем выше и так далее, вверх по цепочке вложенности.
+//        Так как в пятом задании мы работаем с <ul>, а в третьем c <body>, наступление события происходит с нижнего элемента <ul> затем поднимается выше до <body>.
 
 // 7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
 
 const liElems = document.querySelectorAll("li");
-const liElemsChilds = [];
-let count = 0;
 
 for (let index = 0; index < liElems.length; index++) {
   if (index % 2 === 1) {
-    liElems[index].style.backgroundColor = "green";
+    liElems[index].lastElementChild.style.backgroundColor = "green";
   }
 }
