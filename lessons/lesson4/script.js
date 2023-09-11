@@ -63,4 +63,13 @@ button.dispatchEvent(event);
 button.dispatchEvent(mouseEvent);
 button.click();
 
-//--------------------------------- Как браузер использует DOM
+//---------------------------------
+
+const formElem = document.querySelector(".form-second");
+const selectElem = formElem.querySelector(".select");
+const buttonElem = formElem.querySelector(".button");
+
+document.addEventListener("click", function (e) {
+  console.log(selectElem.value);
+  e.preventDefault();
+});
