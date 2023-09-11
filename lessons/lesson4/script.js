@@ -72,4 +72,32 @@ const buttonElem = formElem.querySelector(".button");
 document.addEventListener("click", function (e) {
   console.log(selectElem.value);
   e.preventDefault();
+  if (selectElem.value === "city") {
+    selectElem.classList.add("select__error");
+  } else {
+    selectElem.classList.remove("select__error");
+    return;
+  }
+});
+
+//---------------------------- rating
+
+const buttonS = document.querySelector(".rating_sign_input");
+const formRating = document.querySelector(".form-rating");
+const comment = document.querySelector(".rating_comment");
+
+buttonS.forEach((radio) => {
+  radio.addEventListener("change", function () {
+    const checkedNumber =
+      document.querySelector(".rating_sign_input:checked").value || undefined;
+
+    buttonS.forEach((item) => {
+      const currentLabel = item.previousElementSibling;
+      if (item.value <= checkedNumber) {
+        currentLabel.classList.add("check");
+      } else {
+        currentLabel.classList.remove("check");
+      }
+    });
+  });
 });
