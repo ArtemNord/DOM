@@ -19,7 +19,7 @@ function clickTheButton() {
 
 const teaBtn = document.querySelector("input[value='tea'");
 const coffeeBtn = document.querySelector("input[value='coffee']");
-const drinkBtn = document.querySelector(".drinkButton");
+const drinkBtn = document.querySelector(".drink-button");
 
 drinkBtn.addEventListener("click", () => {
   if (teaBtn.checked) {
@@ -30,3 +30,55 @@ drinkBtn.addEventListener("click", () => {
 });
 
 //---------------------------------------
+
+const form = document.querySelector(".form");
+const passwordField = document.querySelector(".password");
+const submitButton = document.querySelector(".pass-button");
+const togglePasswordButton = document.querySelector(".toggle-password");
+togglePasswordButton.style.display = "none";
+form.style.margin = "150px";
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (passwordField.value === "пароль") {
+    passwordField.style.borderColor = "green";
+    passwordField.style.borderWidth = "3px";
+    passwordField.setCustomValidity("Пароль верный");
+  } else {
+    passwordField.style.borderColor = "red";
+    passwordField.style.borderWidth = "3px";
+    passwordField.setCustomValidity("Пароль не верный");
+  }
+  passwordField.reportValidity();
+});
+
+passwordField.addEventListener("input", (event) => {
+  passwordField.setCustomValidity("");
+});
+
+passwordField.addEventListener("input", () => {
+  if (passwordField.value === "") {
+    togglePasswordButton.style.display = "none";
+  } else {
+    togglePasswordButton.style.display = "inline-block";
+  }
+});
+
+togglePasswordButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  const type =
+    passwordField.getAttribute("type") === "password" ? "text" : "password";
+  passwordField.setAttribute("type", type);
+  togglePasswordButton.textContent =
+    type === "password" ? "Показать пароль" : "Скрыть пароль";
+});
+
+//----------------------------------
+
+textInput.addEventListener("input", changeInput);
+
+const changeInput = () => {
+  const textInput = document.querySelector(".text-input");
+  const header = document.querySelector("h1");
+  header.innerText = textInput.value;
+};
